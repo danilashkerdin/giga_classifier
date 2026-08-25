@@ -3,11 +3,15 @@
 import logging
 import os
 
+from dotenv import load_dotenv
+
 from src.client import GigaChatClient
 from src.classifier import RequestClassifier
 from config.logging_config import setup_logging
 
 logger = logging.getLogger(__name__)
+
+load_dotenv()
 
 AUTH_KEY = os.getenv("GIGACHAT_AUTH_KEY", "")
 

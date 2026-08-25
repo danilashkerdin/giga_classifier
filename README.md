@@ -9,7 +9,7 @@
 - Повышение приоритета при негативной эмоции (`angry`/`frustrated`):
   - `low` → `medium`, `medium` → `high`.
 - Устойчивый парсинг ответов модели (JSON и/или текст, русские термины, fallback на значения по умолчанию).
-- 23 теста с моками (без реального API).
+- 23 юнит-теста с моками + 3 интеграционных теста с реальным API (запускаются при наличии ключа).
 
 ## Структура
 
@@ -24,7 +24,8 @@ giga_classifier/
 │   ├── conftest.py         # Фикстуры и моки
 │   ├── test_parser.py      # 7 тестов парсера
 │   ├── test_classifier.py  # 8 тестов классификатора
-│   └── test_client.py      # 8 тестов клиента
+│   ├── test_client.py      # 8 тестов клиента
+│   └── test_integration.py # 3 интеграционных теста (реальный API)
 ├── config/
 │   └── logging_config.py   # Настройка логирования
 ├── main.py                 # Точка входа
@@ -39,7 +40,16 @@ pip install -r requirements.txt
 
 ## Настройка
 
-Получите Authorization key (Base64-креды) на [developers.sber.ru](https://developers.sber.ru/studio/login) и задайте переменную окружения:
+Получите Authorization key (Base64-креды) на [developers.sber.ru](https://developers.sber.ru/studio/login).
+
+Скопируйте `.env.example` в `.env` и подставьте ключ (`.env` не коммитится):
+
+```bash
+cp .env.example .env
+# отредактируйте .env, указав GIGACHAT_AUTH_KEY
+```
+
+Либо задайте переменную окружения напрямую:
 
 ```bash
 export GIGACHAT_AUTH_KEY="<ваш_auth_key>"

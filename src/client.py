@@ -87,7 +87,7 @@ class GigaChatClient:
         messages: List[Dict[str, str]],
         temperature: float = 0.1,
         max_tokens: int = 150,
-        model: str = "GigaChat",
+        model: str = "GigaChat-2",
     ) -> str:
         """Отправка запроса на генерацию текста. Возвращает ответ модели."""
         token = self.access_token or self.get_access_token()
